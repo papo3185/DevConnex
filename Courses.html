@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Page</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Navbar */
+    nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color:  #bb86fc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .logo a{
+            text-decoration: none;
+            color: #bb86fc;
+        }
+
+        ::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+        header {
+            background: linear-gradient(90deg, #121212, #121212);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color:  #bb86fc;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+    /* Main Layout */
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-right: 2px solid #292929;
+    }
+
+    .sidebar h3 {
+      margin-bottom: 20px;
+      color: #b187ff;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      margin: 10px 0;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+
+    .sidebar li:hover {
+      background: #292929;
+    }
+
+    /* Course Cards */
+    .courses {
+      flex: 1;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #292929;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 420px; /* Fixed height for consistency */
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px; /* Fixed height for images */
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      color: #fbc02d;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #4caf50;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .buttons button {
+      flex: 1;
+      padding: 8px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buttons .enroll {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .buttons .view-syllabus {
+      background-color: #b187ff;
+      color: white;
+    }
+
+    .buttons button:hover {
+      opacity: 0.9;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .modal-content h3 {
+      color: #b187ff;
+      margin-bottom: 10px;
+    }
+
+    .modal-content ul {
+      list-style: none;
+      text-align: left;
+      margin: 10px 0;
+    }
+
+    .modal-content li {
+      margin-bottom: 8px;
+    }
+
+    .close-modal {
+      margin-top: 10px;
+      background-color: #e53935;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <div class="logo"><a href="DevConnex.html">DevConnex.</a></div>
+    <nav>
+        <a href="profile.html">Home</a>
+        <a href="Projects.html">Projects</a>
+        <a href="Practice.html">Practice</a>
+        <a href="Courses.html">Courses</a>
+        <a href="Forums.html">Community</a>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Topics</h3>
+    <ul>
+      <li data-topic="web-dev">Web Development</li>
+      <li data-topic="data-science">Data Science</li>
+      <li data-topic="ml">Machine Learning</li>
+      <li data-topic="programming">Programming Languages</li>
+      <li data-topic="mobile-dev">Mobile Development</li>
+    </ul>
+  </div>
+
+  <!-- Course Cards -->
+  <div class="courses" id="courses-container">
+    <!-- Course cards will be dynamically inserted here -->
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Course Syllabus</h3>
+    <ul id="syllabus-list"></ul>
+    <button class="close-modal">Close</button>
+  </div>
+</div>
+
+<script>
+  const courses = [
+    {
+      id: 1,
+      topic: "web-dev",
+      title: "Intro to Web Development",
+      instructor: "John Doe",
+      rating: 5,
+      price: "$29.99",
+      thumbnail: "Designer (1).png",
+      syllabus: ["HTML Basics", "CSS Fundamentals", "JavaScript Essentials"],
+    },
+    {
+      id: 2,
+      topic: "data-science",
+      title: "Data Science for Beginners",
+      instructor: "Jane Smith",
+      rating: 4.8,
+      price: "$39.99",
+      thumbnail: "Designer (2).png",
+      syllabus: ["Python for Data Science", "Pandas and Numpy", "Data Visualization"],
+    },
+  ];
+
+  const coursesContainer = document.getElementById("courses-container");
+
+  const renderCourses = (topic) => {
+    coursesContainer.innerHTML = "";
+    const filteredCourses = topic
+      ? courses.filter(course => course.topic === topic)
+      : courses;
+    filteredCourses.forEach(course => {
+      coursesContainer.innerHTML += `
+        <div class="card">
+          <img src="${course.thumbnail}" alt="Course Thumbnail">
+          <div class="card-body">
+            <h3>${course.title}</h3>
+            <p>By ${course.instructor}</p>
+            <p class="rating">${"★".repeat(course.rating)}</p>
+            <p class="price">${course.price}</p>
+            <div class="buttons">
+              <button class="enroll">Enroll</button>
+              <button class="view-syllabus" data-syllabus="${course.id}">View Syllabus</button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  };
+
+  renderCourses();
+
+  document.querySelectorAll(".sidebar li").forEach(button => {
+    button.addEventListener("click", () => {
+      const topic = button.getAttribute("data-topic");
+      renderCourses(topic);
+    });
+  });
+
+  const modal = document.getElementById("modal");
+  const syllabusList = document.getElementById("syllabus-list");
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("view-syllabus")) {
+      const courseId = e.target.getAttribute("data-syllabus");
+      const course = courses.find(course => course.id == courseId);
+      syllabusList.innerHTML = course.syllabus.map(item => `<li>${item}</li>`).join("");
+      modal.style.display = "flex";
+    } else if (e.target.classList.contains("close-modal")) {
+      modal.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
